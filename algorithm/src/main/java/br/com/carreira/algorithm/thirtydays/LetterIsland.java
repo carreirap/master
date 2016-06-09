@@ -31,7 +31,7 @@ public class LetterIsland {
          int k = 2;
          int count = 0;
          
-         Map<String,Boolean> table = new HashMap<String,Boolean>();
+         Map<String,Integer> table = new HashMap<String,Integer>();
          StringBuilder aux = new StringBuilder(s);
          StringBuilder alt = new StringBuilder(s);
          int i=0;
@@ -57,11 +57,16 @@ public class LetterIsland {
              String subs = s.substring(i, grow);
              //System.out.println("-->" + subs);
              if (table.size() == 0){
-                 table.put(subs,true);
-             } else if (table.put(subs, true) != null) {
-                 grow += 1;
-                 continue;
+                 table.put(subs,1);
+             } else {
+            	 Integer flag = table.put(subs, 1);
+        		 if ( flag != null ) {
+        			 grow += 1;
+        			
+        			 continue;
+        		 }
              }
+            	 
              String regex = "(" + subs + ")";
              
              Pattern pat = Pattern.compile(regex);
